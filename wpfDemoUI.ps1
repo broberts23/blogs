@@ -155,8 +155,8 @@ $SubmitButton.Add_Click({
             Authorization = "Bearer $accessToken"
         }
 
-        # Example: Call your Azure Function App (update the URL accordingly).
-        $functionUrl = "https://<your-function-app-name>.azurewebsites.net/api/CreateAccount?code=<your-function-key>"
+        # Example: Call your Azure Web App (update the URL accordingly).
+        $Uri = "https://<your-web-app-name>.azurewebsites.net/api/CreateAccount"
         
         # Build a payload including all inputs.
         $payload = @{
@@ -166,7 +166,7 @@ $SubmitButton.Add_Click({
             input4 = $Input4.Text.Trim()
         } | ConvertTo-Json
     
-        Invoke-WebRequest -Method POST -Uri $functionUrl -Headers $headers -ContentType 'application/json' -Body $payload -UseBasicParsing
+        Invoke-WebRequest -Method POST -Uri $Uri -Headers $headers -ContentType 'application/json' -Body $payload -UseBasicParsing
 
         # Simulate further progress.
         $ProgressBar.Value = 40
